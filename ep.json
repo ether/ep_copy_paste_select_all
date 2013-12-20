@@ -1,0 +1,13 @@
+{
+  "parts": [
+    {
+      "name": "copy_paste_select_all",
+      "client_hooks": {
+        "postAceInit" : "ep_copy_paste_select_all/static/js/copy_paste_select_all"
+      },
+      "hooks": {
+        "eejsBlock_dd_edit" : "ep_copy_paste_select_all/copy_paste_select_all"
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name":        "ep_page_view",
+  "version":     "0.4.1",
+  "keywords":    ["page view", "pv", "preview", "overview", "page break", "break", "new page"],
+  "description": "Add support to do 'page view', with a toggle on/off option in Settings, also Page Breaks with Control Enter",
+  "contributors": [
+    {
+      "name": "John McLear",
+      "email": "john@mclear.co.uk",
+      "url": "http://mclear.co.uk"
+    },
+    {
+      "name": "Robin Buse",
+      "email": "me@factor.cc",
+      "url": "https://factor.cc/"
+    }
+  ],
+
+  "repository" : {
+    "type": "git",
+    "url":  "git://github.com/ether/ep_page_view.git"
+  },
+
+  "dependencies": {},
+
+  "engines": {
+    "node": "*"
+  }
+}
