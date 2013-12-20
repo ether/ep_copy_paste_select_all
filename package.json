@@ -1,6 +1,6 @@
 {
   "name":        "ep_copy_paste_select_all",
-  "version":     "0.0.1",
+  "version":     "0.0.2",
   "keywords":    ["select all"],
   "description": "Add support to do Copy Paste and Select All in File menu",
   "contributors": [
