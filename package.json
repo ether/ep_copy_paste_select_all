@@ -1,8 +1,8 @@
 {
   "name":        "ep_copy_paste_select_all",
-  "version":     "0.0.2",
-  "keywords":    ["select all"],
-  "description": "Add support to do Copy Paste and Select All in File menu",
+  "version":     "0.0.3",
+  "keywords":    ["select all", "copy", "paste", "replace"],
+  "description": "Add support to do Copy, Paste, Select All and Find and Replace, this plugin requires the file menu",
   "contributors": [
     {
       "name": "John McLear",
