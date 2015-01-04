@@ -25,7 +25,7 @@ function findAndReplace(searchText, replacement, searchNode) {
         return;
     }
     var regex = typeof searchText === 'string' ?
-                new RegExp(searchText, 'g') : searchText,
+                new RegExp(searchText, 'gi') : searchText,
         childNodes = (searchNode || document.body).childNodes,
         cnLength = childNodes.length,
         excludes = 'html,head,style,title,link,meta,script,object,iframe';
