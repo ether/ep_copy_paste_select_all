@@ -13,7 +13,7 @@
 
   "repository" : {
     "type": "git",
-    "url":  "git://github.com/ether/ep_copy_paste_select_all.git"
+    "url":  "git://github.com/JohnMcLear/ep_copy_paste_select_all.git"
   },
 
   "dependencies": {},
