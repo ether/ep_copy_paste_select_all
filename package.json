@@ -1,7 +1,12 @@
 {
-  "name":        "ep_copy_paste_select_all",
-  "version":     "0.0.4",
-  "keywords":    ["select all", "copy", "paste", "replace"],
+  "name": "ep_copy_paste_select_all",
+  "version": "0.0.5",
+  "keywords": [
+    "select all",
+    "copy",
+    "paste",
+    "replace"
+  ],
   "description": "Add support to do Copy, Paste, Select All and Find and Replace, this plugin requires the file menu",
   "contributors": [
     {
@@ -10,14 +15,11 @@
       "url": "http://mclear.co.uk"
     }
   ],
-
-  "repository" : {
+  "repository": {
     "type": "git",
-    "url":  "git://github.com/JohnMcLear/ep_copy_paste_select_all.git"
+    "url": "git://github.com/JohnMcLear/ep_copy_paste_select_all.git"
   },
-
   "dependencies": {},
-
   "engines": {
     "node": "*"
   }
