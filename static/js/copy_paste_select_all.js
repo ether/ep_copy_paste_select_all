@@ -1,10 +1,11 @@
-exports.postAceInit = function (hook, context) {
+'use strict';
+
+exports.postAceInit = (hook, context) => {
   $('#selectAll').click(() => {
     context.ace.callWithAce((ace) => {
       const document = ace.ace_getDocument();
 
       const numberOfLines = $(document).find('body').contents().length;
-      const lastLineLenght = 8;
       ace.ace_performSelectionChange([0, 0], [numberOfLines - 1, 0], false);
     }, 'selectAll', true);
   });
@@ -12,7 +13,8 @@ exports.postAceInit = function (hook, context) {
   $('#findAndReplace').click(() => {
     const from = prompt('Search for...');
     const to = prompt('Replace with...');
-    const HTMLLines = $('iframe[name="ace_outer"]').contents().find('iframe').contents().find('#innerdocbody').children('div');
+    const HTMLLines = $('iframe[name="ace_outer"]').contents()
+        .find('iframe').contents().find('#innerdocbody').children('div');
     $(HTMLLines).each(function () { // For each line
       findAndReplace(from, to, this);
     });
@@ -31,7 +33,7 @@ function findAndReplace(searchText, replacement, searchNode) {
   const excludes = ['html', 'head', 'style', 'title', 'meta', 'script', 'object', 'iframe', 'link'];
 
   while (cnLength--) {
-    var currentNode = childNodes[cnLength];
+    const currentNode = childNodes[cnLength];
     if (currentNode.nodeType === 1) {
       if (excludes.indexOf(currentNode.nodeName.toLowerCase() === -1)) {
         arguments.callee(searchText, replacement, currentNode);
@@ -41,7 +43,7 @@ function findAndReplace(searchText, replacement, searchNode) {
       continue;
     }
     const parent = currentNode.parentNode;
-    const frag = (function () {
+    const frag = (() => {
       const html = currentNode.data.replace(regex, replacement);
       const wrap = document.createElement('div');
       const frag = document.createDocumentFragment();
