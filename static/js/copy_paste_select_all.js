@@ -21,7 +21,7 @@ exports.postAceInit = (hook, context) => {
   });
 };
 
-function findAndReplace(searchText, replacement, searchNode) {
+const findAndReplace = (searchText, replacement, searchNode) => {
   if (!searchText || typeof replacement === 'undefined') {
     // Throw error here if you want...
     return;
