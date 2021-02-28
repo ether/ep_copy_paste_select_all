@@ -56,4 +56,4 @@ const findAndReplace = (searchText, replacement, searchNode) => {
     parent.insertBefore(frag, currentNode);
     parent.removeChild(currentNode);
   }
-}
+};
