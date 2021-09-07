@@ -36,7 +36,7 @@ const findAndReplace = (searchText, replacement, searchNode) => {
     const currentNode = childNodes[cnLength];
     if (currentNode.nodeType === 1) {
       if (excludes.indexOf(currentNode.nodeName.toLowerCase() === -1)) {
-        arguments.callee(searchText, replacement, currentNode);
+        findAndReplace(searchText, replacement, currentNode);
       }
     }
     if (currentNode.nodeType !== 3 || !regex.test(currentNode.data)) {
