@@ -35,7 +35,7 @@ const findAndReplace = (searchText, replacement, searchNode) => {
   while (cnLength--) {
     const currentNode = childNodes[cnLength];
     if (currentNode.nodeType === 1) {
-      if (excludes.indexOf(currentNode.nodeName.toLowerCase() === -1)) {
+      if (excludes.indexOf(currentNode.nodeName.toLowerCase()) === -1) {
         findAndReplace(searchText, replacement, currentNode);
       }
     }
