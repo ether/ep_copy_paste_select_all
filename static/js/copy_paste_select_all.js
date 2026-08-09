@@ -10,9 +10,21 @@ exports.postAceInit = (hook, context) => {
     }, 'selectAll', true);
   });
 
+  $('#copy').click(() => {
+    // eslint-disable-next-line no-alert
+    alert(html10n.get('ep_copy_paste_select_all.copy_hint'));
+  });
+
+  $('#cut').click(() => {
+    // eslint-disable-next-line no-alert
+    alert(html10n.get('ep_copy_paste_select_all.cut_hint'));
+  });
+
   $('#findAndReplace').click(() => {
-    const from = prompt('Search for...');
-    const to = prompt('Replace with...');
+    // eslint-disable-next-line no-alert
+    const from = prompt(html10n.get('ep_copy_paste_select_all.search_prompt'));
+    // eslint-disable-next-line no-alert
+    const to = prompt(html10n.get('ep_copy_paste_select_all.replace_prompt'));
     const HTMLLines = $('iframe[name="ace_outer"]').contents()
         .find('iframe').contents().find('#innerdocbody').children('div');
     $(HTMLLines).each(function () { // For each line

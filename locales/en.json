@@ -1,0 +1,11 @@
+{
+  "ep_copy_paste_select_all.select_all": "Select All",
+  "ep_copy_paste_select_all.copy": "Copy",
+  "ep_copy_paste_select_all.cut": "Cut",
+  "ep_copy_paste_select_all.paste": "Paste",
+  "ep_copy_paste_select_all.find_and_replace": "Find and Replace",
+  "ep_copy_paste_select_all.copy_hint": "Please use Control C to copy contents",
+  "ep_copy_paste_select_all.cut_hint": "Please use Control X to cut contents",
+  "ep_copy_paste_select_all.search_prompt": "Search for...",
+  "ep_copy_paste_select_all.replace_prompt": "Replace with..."
+}
