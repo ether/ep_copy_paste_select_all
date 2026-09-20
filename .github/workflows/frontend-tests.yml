@@ -49,6 +49,13 @@ jobs:
         working-directory: ./etherpad-lite
         run: |
           pnpm run plugins i --path ../../plugin
+      # This plugin renders its entries into the "Edit" dropdown that
+      # ep_file_menu_toolbar provides (`eejsBlock_dd_edit`), so without that
+      # plugin there is no menu for the frontend tests to click.
+      - name: Install ep_file_menu_toolbar
+        working-directory: ./etherpad-lite
+        run: |
+          pnpm run plugins i ep_file_menu_toolbar
       - name: Create settings.json
         working-directory: ./etherpad-lite
         run: cp ./src/tests/settings.json settings.json
