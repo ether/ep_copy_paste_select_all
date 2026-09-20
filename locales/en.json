@@ -1,0 +1,12 @@
+{
+  "ep_copy_paste_select_all.selectAll": "Select All",
+  "ep_copy_paste_select_all.copy": "Copy",
+  "ep_copy_paste_select_all.cut": "Cut",
+  "ep_copy_paste_select_all.paste": "Paste",
+  "ep_copy_paste_select_all.findAndReplace": "Find and Replace",
+  "ep_copy_paste_select_all.searchFor": "Search for...",
+  "ep_copy_paste_select_all.replaceWith": "Replace with...",
+  "ep_copy_paste_select_all.clipboardBlocked.copy": "Your browser did not allow this page to use the clipboard. Please press Ctrl+C (Cmd+C on a Mac) instead.",
+  "ep_copy_paste_select_all.clipboardBlocked.cut": "Your browser did not allow this page to use the clipboard. Please press Ctrl+X (Cmd+X on a Mac) instead.",
+  "ep_copy_paste_select_all.clipboardBlocked.paste": "Your browser did not allow this page to read the clipboard. Please press Ctrl+V (Cmd+V on a Mac) instead."
+}
