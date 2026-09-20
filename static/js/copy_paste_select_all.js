@@ -56,7 +56,30 @@ const readClipboard = async () => {
   }
 };
 
+// [line, column] pairs, as `rep.selStart` / `rep.selEnd` store them.
+const sameRange = (a, b) =>
+  a != null && b != null &&
+  a[0][0] === b[0][0] && a[0][1] === b[0][1] &&
+  a[1][0] === b[1][0] && a[1][1] === b[1][1];
+
 exports.postAceInit = (hook, context) => {
+  // Reading the range is synchronous on purpose: it has to happen in the same
+  // tick as `getSelectedText()`, before anything is awaited.
+  const getSelectionRange = () => {
+    let range = null;
+    context.ace.callWithAce((ace) => {
+      const rep = ace.ace_getRep();
+      range = [rep.selStart.slice(), rep.selEnd.slice()];
+    }, 'ep_copy_paste_select_all', false);
+    return range;
+  };
+
+  const replaceRange = (start, end, text) => {
+    context.ace.callWithAce((ace) => {
+      ace.ace_replaceRange(start, end, text);
+    }, 'ep_copy_paste_select_all', true);
+  };
+
   const replaceSelection = (text) => {
     context.ace.callWithAce((ace) => {
       const rep = ace.ace_getRep();
@@ -92,6 +115,12 @@ exports.postAceInit = (hook, context) => {
     e.preventDefault();
     const text = getSelectedText();
     if (!text) return;
+    // Writing to the clipboard can take a while - the browser may still be
+    // asking the user - and the selection can move while that is pending,
+    // either because the user clicked elsewhere or because a collaborator
+    // edited the pad. Remember the range that was copied so that the delete
+    // below can never hit a different one.
+    const copied = getSelectionRange();
     // Only remove the text once it is safely on the clipboard.
     if (!await writeClipboard(text)) {
       window.alert(t('ep_copy_paste_select_all.clipboardBlocked.cut',
@@ -99,7 +128,10 @@ exports.postAceInit = (hook, context) => {
           'Please press Ctrl+X (Cmd+X on a Mac) instead.'));
       return;
     }
-    replaceSelection('');
+    // The selection moved: the text is on the clipboard, so Cut quietly
+    // degrades to Copy rather than deleting something the user did not pick.
+    if (!sameRange(copied, getSelectionRange())) return;
+    replaceRange(copied[0], copied[1], '');
   });
 
   $('#paste').on('click', async (e) => {

@@ -82,6 +82,41 @@ test.describe('ep_copy_paste_select_all', () => {
     await expect.poll(() => padBody.innerText()).toBe('\n');
   });
 
+  test('Cut does not delete a selection the user moved to while the clipboard was busy',
+      async ({page}) => {
+        // The clipboard write is asynchronous and the browser can sit on it
+        // (permission prompt, slow compositor). Hold it open so the selection
+        // can be moved while Cut is mid-flight.
+        await page.evaluate(() => {
+          const clipboard = navigator.clipboard;
+          const write = clipboard.writeText.bind(clipboard);
+          (window as any).__cutGate = {open: null};
+          clipboard.writeText = async (text: string) => {
+            await write(text);
+            await new Promise<void>((resolve) => { (window as any).__cutGate.open = resolve; });
+          };
+        });
+
+        await openEditMenu(page);
+        await page.locator('#selectAll').click();
+        await openEditMenu(page);
+        await page.locator('#cut').click();
+        await page.waitForFunction(() => (window as any).__cutGate.open != null);
+
+        // Meanwhile the user picks a different, smaller selection.
+        const padBody = await getPadBody(page);
+        await padBody.locator('div').nth(1).dblclick();
+        await expect.poll(() => selectedText(page)).toContain('beta');
+
+        await page.evaluate(() => (window as any).__cutGate.open());
+
+        // The copied text is on the clipboard, and nothing was removed: the
+        // old code deleted whatever was selected *now*, i.e. "beta".
+        await expect.poll(() => clipboardText(page)).toBe('alpha\nbeta');
+        await page.waitForTimeout(500);
+        expect(await padBody.innerText()).toBe('alpha\nbeta');
+      });
+
   test('menu labels come from the plugin locales, not hardcoded markup', async ({page}) => {
     // Every label must carry a data-l10n-id that core can actually resolve:
     // that proves locales/en.json is picked up and shipped to the browser.
